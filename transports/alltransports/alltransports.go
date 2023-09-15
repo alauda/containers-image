@@ -16,6 +16,7 @@ import (
 	_ "github.com/containers/image/v5/oci/archive"
 	_ "github.com/containers/image/v5/oci/layout"
 	_ "github.com/containers/image/v5/openshift"
+	_ "github.com/containers/image/v5/registry"
 	_ "github.com/containers/image/v5/sif"
 	_ "github.com/containers/image/v5/tarball"
 	// The docker-daemon transport is registeredy by docker_daemon*.go
