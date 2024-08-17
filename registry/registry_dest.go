@@ -15,6 +15,8 @@ import (
 	"github.com/containers/image/v5/internal/putblobdigest"
 	"github.com/containers/image/v5/manifest"
 	"github.com/containers/image/v5/types"
+	"github.com/docker/distribution/manifest/manifestlist"
+	"github.com/docker/distribution/manifest/schema2"
 	digest "github.com/opencontainers/go-digest"
 	imgspecv1 "github.com/opencontainers/image-spec/specs-go/v1"
 )
@@ -41,6 +43,8 @@ func newImageDestination(sys *types.SystemContext, ref registryReference) (priva
 			SupportedManifestMIMETypes: []string{
 				imgspecv1.MediaTypeImageManifest,
 				imgspecv1.MediaTypeImageIndex,
+				manifestlist.MediaTypeManifestList,
+				schema2.MediaTypeManifest,
 			},
 			DesiredLayerCompression:        desiredLayerCompression,
 			AcceptsForeignLayerURLs:        true,
