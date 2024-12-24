@@ -220,9 +220,9 @@ func (d *ociImageDestination) PutManifest(ctx context.Context, m []byte, instanc
 // if PutManifest was only called for the single-arch image with instanceDigest == nil), primarily to allow lookups by the
 // original manifest list digest, if desired.
 // WARNING: This does not have any transactional semantics:
-// - Uploaded data MAY be visible to others before Commit() is called
+// - Uploaded data MAY be visible to others before CommitWithOptions() is called
 // - Uploaded data MAY be removed or MAY remain around if Close() is called without Commit() (i.e. rollback is allowed but not guaranteed)
-func (d *ociImageDestination) Commit(ctx context.Context, image types.UnparsedImage) error {
+func (d *ociImageDestination) CommitWithOptions(ctx context.Context, options private.CommitOptions) error {
 	if d.current == "" {
 		return fmt.Errorf("no manifest")
 	}
