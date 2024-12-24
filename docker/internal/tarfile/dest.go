@@ -18,6 +18,7 @@ import (
 	"github.com/containers/image/v5/types"
 	"github.com/opencontainers/go-digest"
 	"github.com/sirupsen/logrus"
+	imgspecv1 "github.com/opencontainers/image-spec/specs-go/v1"
 )
 
 // Destination is a partial implementation of private.ImageDestination for writing to a Writer.
@@ -168,8 +169,8 @@ func (d *Destination) PutManifest(ctx context.Context, m []byte, instanceDigest 
 	if err := json.Unmarshal(m, &man); err != nil {
 		return fmt.Errorf("parsing manifest: %w", err)
 	}
-	if man.SchemaVersion != 2 || man.MediaType != manifest.DockerV2Schema2MediaType {
-		return errors.New("Unsupported manifest type, need a Docker schema 2 manifest")
+	if man.SchemaVersion != 2 || man.MediaType != manifest.DockerV2Schema2MediaType && man.MediaType != imgspecv1.MediaTypeImageManifest {
+		return errors.New("Unsupported manifest type, need a Docker schema 2 manifest or an OCI image manifest")
 	}
 
 	if err := d.archive.lock(); err != nil {
