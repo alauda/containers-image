@@ -2,7 +2,7 @@ package docker
 
 import (
 	"context"
-	"errors"
+	// "errors"
 	"fmt"
 	"strings"
 
@@ -99,11 +99,11 @@ func newReference(ref reference.Named, unknownDigest bool) (dockerReference, err
 	// tag and digest), so fail.  This MAY be accepted in the future.
 	// (Even if it were supported, the semantics of policy namespaces are unclear - should we drop
 	// the tag or the digest first?)
-	_, isTagged := ref.(reference.NamedTagged)
-	_, isDigested := ref.(reference.Canonical)
-	if isTagged && isDigested {
-		return dockerReference{}, errors.New("Docker references with both a tag and digest are currently not supported")
-	}
+	// _, isTagged := ref.(reference.NamedTagged)
+	// _, isDigested := ref.(reference.Canonical)
+	// if isTagged && isDigested {
+	// 	return dockerReference{}, errors.New("Docker references with both a tag and digest are currently not supported")
+	// }
 
 	return dockerReference{
 		ref:             ref,
