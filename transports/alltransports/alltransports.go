@@ -10,6 +10,7 @@ import (
 	// Register all known transports.
 	// NOTE: Make sure docs/containers-transports.5.md and docs/containers-policy.json.5.md are updated when adding or updating
 	// a transport.
+	_ "github.com/containers/image/v5/dir-in-tar"
 	_ "github.com/containers/image/v5/directory"
 	_ "github.com/containers/image/v5/docker"
 	_ "github.com/containers/image/v5/docker/archive"
